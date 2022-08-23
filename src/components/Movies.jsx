@@ -1,30 +1,23 @@
 import { useState, useEffect } from 'react';
-import { PageHeading } from 'frame/PageHeading/PageHeading';
-import { NavLink, Outlet } from 'react-router-dom';
-import * as filmsCollectionAPI from '../services/moviesApi';
+import { MoviesList } from './MoviesList';
+import { Form } from './Form';
+import { useSearchParams } from 'react-router-dom';
+import { searchMovieKeyword } from 'services/moviesApi';
 
-export const Movies = () => {
+export const Movies = ({}) => {
   const [movies, setMovies] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    filmsCollectionAPI.searchMovieKeyword().then(setMovies);
-  }, []);
+//   const handleSearchAndUrlChange = query => {
+//     setIsLoading(true);
+//     setSearchParams({ query });
+//   };
 
   return (
     <>
-      <PageHeading>Movies</PageHeading>
-
-      {movies && (
-        <ul>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <NavLink to={`${movie.id}`}>{movie.title}</NavLink>
-            </li>
-          ))}
-        </ul>
-      )}
-      <hr />
-      <Outlet />
+      {/* <Form onSearch={handleSearchAndUrlChange} /> */}
+      {movies && <MoviesList films={movies} />}
     </>
   );
 };
+

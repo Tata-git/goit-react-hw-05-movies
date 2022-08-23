@@ -1,7 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom'; // , useLocation
 import { useState, useEffect } from 'react';
 import { PageHeading } from 'frame/PageHeading/PageHeading';
 import { getListTrendingMovies } from '../services/moviesApi';
+import { MoviesList } from './MoviesList';
 
 export const Home = () => {
   const [movies, setMovies] = useState(null);
@@ -10,21 +10,12 @@ export const Home = () => {
     // getListTrendingMovies().then(console.log);
     getListTrendingMovies().then(setMovies);
   }, []);
-  // const location = useLocation();
+
   return (
     <>
       <PageHeading>Trending today</PageHeading>
-      {movies && (
-        <ul>
-          {movies.map(({ id, title }) => (
-            <li key={id}>
-              <NavLink to={'movies/:movieId'}>{title}</NavLink>
-            </li>
-          ))}
-        </ul>
-      )}
-      <hr />
-      <Outlet />
+
+      {movies && <MoviesList movies={movies} />}
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { Home } from 'components/Home';
 import { Movies } from 'components/Movies';
+// import { MoviesList } from 'components/MoviesList';
 import { MovieDetails } from 'components/MovieDetails';
 import { NotFoundView } from 'components/NotFoundView';
 
