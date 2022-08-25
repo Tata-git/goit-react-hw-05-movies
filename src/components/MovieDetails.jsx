@@ -1,7 +1,6 @@
 // import {  Suspense } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
-import { PageHeading } from 'frame/PageHeading/PageHeading';
 
 const MovieDetails = () => {
   const movie = useFetchMovie();
@@ -48,17 +47,20 @@ const MovieDetails = () => {
               })}
             </p>
           </div>
-          {/* //---------- Additional information ------------ */}
-          <PageHeading>Additional information</PageHeading>
 
+          {/* //---------- Additional information ------------ */}
+          <h1>Additional information</h1>
           <ul>
             <li>
-              <NavLink to={'cast'} state={{ from: location?.state?.from }}>
+              <NavLink to='cast' state={{ from: location }}>
                 Cast
               </NavLink>
-              {/* Cast */}
             </li>
-            <li>Reviews</li>
+            <li>
+              <NavLink to='reviews' state={{ from: location }}>
+                Reviews
+              </NavLink>
+            </li>
           </ul>
         </>
       )}
@@ -69,6 +71,8 @@ const MovieDetails = () => {
 export default MovieDetails;
 
 // https://textbook.edu.goit.global/javascript-yk5evp/v2/uk/docs/lesson-17/date/#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D1%82%D0%B8
+//------------------------
+              // <NavLink to={'cast'} state={{ from: location?.state?.from }}>
 
 //----------------------------
 // const {
