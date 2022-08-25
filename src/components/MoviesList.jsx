@@ -1,14 +1,13 @@
-import { PageHeading } from 'frame/PageHeading/PageHeading';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-export const MoviesList = ({ movies }) => {
+export const MoviesList = ({ moviesInfo }) => {
   const location = useLocation();
 
   return (
     <>
-      {movies && (
+      {moviesInfo && (
         <ul>
-          {movies.map(({ id, title }) => (
+          {moviesInfo.map(({ id, title }) => (
             <li key={id}>
               <NavLink to={`/movies/${id}`} state={{ from: location }}>
                 {title}

@@ -1,23 +1,44 @@
-import { useState, useEffect } from 'react';
-import { MoviesList } from './MoviesList';
-import { Form } from './Form';
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import { searchMovieKeyword } from 'services/moviesApi';
+import { MoviesList } from './MoviesList';
 
-export const Movies = ({}) => {
+const Movies = () => {
   const [movies, setMovies] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
 
-//   const handleSearchAndUrlChange = query => {
-//     setIsLoading(true);
-//     setSearchParams({ query });
-//   };
+  const [query, setQuery] = useState('');
+
+  const handleChange = ({ target: { value } }) => {
+    setQuery(value);
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    try {
+      const response = await searchMovieKeyword(query);
+      console.log(response);
+      setMovies(response);
+    } catch (error) {
+      console.error('could not get data:', error.message);
+    }
+
+    setQuery('');
+  };
 
   return (
     <>
-      {/* <Form onSearch={handleSearchAndUrlChange} /> */}
-      {movies && <MoviesList films={movies} />}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="enter query"
+          value={query}
+          onChange={handleChange}
+        ></input>
+        <button type="submit">Search</button>
+      </form>
+      {movies && <MoviesList moviesInfo={movies} />}
     </>
   );
 };
 
+export default Movies;

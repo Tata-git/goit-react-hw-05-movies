@@ -7,14 +7,18 @@ export const useFetchMovie = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    // getFullDetailsMovie(movieId).then(setMovie);
-    getFullDetailsMovie(movieId).then(data => {
-      console.log('data', data);
-      setMovie(data);
-    });
+    // console.log(movieId);
+    
+    // getFullDetailsMovie(movieId).then(data => {
+    //   console.log('data', data);
+    //   setMovie(data);
+    // });
+
+    getFullDetailsMovie(movieId).then(setMovie);
+
   }, [movieId]);
 
-  console.log('movie', movie);
+  // console.log('movie', movie);
 
   return movie;
 };

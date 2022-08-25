@@ -3,7 +3,7 @@ import { PageHeading } from 'frame/PageHeading/PageHeading';
 import { getListTrendingMovies } from '../services/moviesApi';
 import { MoviesList } from './MoviesList';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -15,10 +15,12 @@ export const Home = () => {
     <>
       <PageHeading>Trending today</PageHeading>
 
-      {movies && <MoviesList movies={movies} />}
+      {movies && <MoviesList moviesInfo={movies} />}
     </>
   );
 };
+
+export default Home;
 //
 
 //--------    getListTrendingMovies().then(console.log);   ------------------------------

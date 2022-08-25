@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import Home from 'components/Home';
+import Movies from 'components/Movies';
+import MovieDetails from 'components/MovieDetails';
+import Cast from 'components/Cast';
+import Reviews from 'components/Reviews';
+import NotFoundView from 'components/NotFoundView';
 
-import { Layout } from './Layout/Layout';
-import { Home } from 'components/Home';
-import { Movies } from 'components/Movies';
 // import { MoviesList } from 'components/MoviesList';
-import { MovieDetails } from 'components/MovieDetails';
-import { NotFoundView } from 'components/NotFoundView';
 
 export const App = () => {
   return (
@@ -14,8 +16,38 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="movies" element={<Movies />} />
         <Route path="movies/:movieId" element={<MovieDetails />} />
+        <Route path="movies/:movieId/cast" element={<Cast />} />
+        <Route path="movies/:movieId/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFoundView />} />
       </Route>
     </Routes>
   );
 };
+
+//---------------------------------------
+// import { lazy } from 'react';
+
+// const Layout = lazy(
+//   () => import('./Layout/Layout') /* webpackChunkName: "layout" */
+// );
+// const Home = lazy(
+//   () => import('components/Home') /* webpackChunkName: "home" */
+// );
+// const Movies = lazy(
+//   () => import('components/Movies') /* webpackChunkName: "movies" */
+// );
+// const MovieDetails = lazy(
+//   () =>
+//     import('components/MovieDetails') /* webpackChunkName: "movie-details" */
+// );
+// const NotFoundView = lazy(
+//   () =>
+//     import('components/NotFoundView') /* webpackChunkName: "not-found-view" */
+// );
+
+// const Cast = lazy(
+//   () => import('components/Cast') /* webpackChunkName: "cast" */
+// );
+// const Reviews = lazy(
+//   () => import('components/Reviews') /* webpackChunkName: "reviews" */
+// );
