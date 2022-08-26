@@ -1,6 +1,7 @@
-// import {  Suspense } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+// import { Suspense } from 'react';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
+import { Box, Button, Poster } from 'styled/MovieDetails.styled';
 
 const MovieDetails = () => {
   const movie = useFetchMovie();
@@ -20,48 +21,50 @@ const MovieDetails = () => {
   return (
     <>
       {/* <Suspense fallback={<div>Loading...</div>}></Suspense> */}
-      {!movie && <h2>Загружаем...</h2>}
+      {!movie && <h2>Loading...</h2>}
 
       {movie && (
         <>
           {/* //-------------- Go back ------------------------ */}
-          <button type="button" onClick={handleClick}>
+          <Button type="button" onClick={handleClick}>
             Go back
-          </button>
-          {/* //------------ moviesInfo ----------------------- */}
-          <div>
-            <img src={movie.poster_path ? poster : ''} alt={movie.tagline} />
-          </div>
-          <div>
-            <h2>
-              {movie.title}
-              {release}
-            </h2>
-            <p>User Score: {movie.vote_average}%</p>
-            <p>Overview</p>
-            <p>{movie.overview}</p>
-            <p>Genres</p>
-            <p>
-              {movie.genres.map(({ id, name }) => {
-                return <span key={id}>{name} </span>;
-              })}
-            </p>
-          </div>
-
+          </Button>
+          <Box>
+            {/* //------------ moviesInfo ----------------------- */}
+            <div>
+              <Poster src={movie.poster_path ? poster : ''} alt={movie.tagline} />
+            </div>
+            <div>
+              <h2>
+                {movie.title} {release ? release : ''}
+              </h2>
+              <p>User Score: {movie.vote_average} %</p>
+              <p>Overview</p>
+              <p>{movie.overview}</p>
+              <p>Genres</p>
+              <p>
+                {movie.genres.map(({ id, name }) => {
+                  return <span key={id}>{name} </span>;
+                })}
+              </p>
+            </div>
+          </Box>
           {/* //---------- Additional information ------------ */}
           <h1>Additional information</h1>
           <ul>
             <li>
-              <NavLink to='cast' state={{ from: location }}>
+              <NavLink to="cast" state={{ from: location }}>
                 Cast
               </NavLink>
             </li>
             <li>
-              <NavLink to='reviews' state={{ from: location }}>
+              <NavLink to="reviews" state={{ from: location }}>
                 Reviews
               </NavLink>
             </li>
           </ul>
+          <hr />
+          <Outlet />
         </>
       )}
     </>
@@ -72,7 +75,7 @@ export default MovieDetails;
 
 // https://textbook.edu.goit.global/javascript-yk5evp/v2/uk/docs/lesson-17/date/#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D1%82%D0%B8
 //------------------------
-              // <NavLink to={'cast'} state={{ from: location?.state?.from }}>
+// <NavLink to={'cast'} state={{ from: location?.state?.from }}>
 
 //----------------------------
 // const {
