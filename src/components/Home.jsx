@@ -8,6 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     // getListTrendingMovies().then(console.log);
+    
     getListTrendingMovies().then(setMovies);
   }, []);
 

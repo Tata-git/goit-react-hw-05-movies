@@ -1,7 +1,7 @@
 import { useFetchReviews } from 'hooks/useFetchReviews';
 
 const Reviews = () => {
-  const [reviews] = useFetchReviews();
+  const reviews = useFetchReviews();
 
   return (
     <>

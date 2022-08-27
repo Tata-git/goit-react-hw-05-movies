@@ -7,6 +7,7 @@ const Movies = () => {
 
   const [query, setQuery] = useState('');
 
+
   const handleChange = ({ target: { value } }) => {
     setQuery(value);
   };
@@ -37,6 +38,7 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
       {movies && <MoviesList moviesInfo={movies} />}
+
     </>
   );
 };

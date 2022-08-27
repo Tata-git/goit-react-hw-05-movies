@@ -1,7 +1,7 @@
 import { useFetchCast } from 'hooks/useFetchCast';
 
 const Cast = () => {
-  const [castDetails] = useFetchCast();
+  const castDetails = useFetchCast();
 
   return (
     <>

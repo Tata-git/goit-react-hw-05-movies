@@ -6,6 +6,9 @@ const API_KEY = '74dab5764eb399e955b3b18efd4e4a86';
 // axios.defaults.baseURL = BASE_URL;
 // axios.defaults.params = {
 //   key: API_KEY,
+//   language: 'en-US',
+//   page: 1,
+//   include_adult: false,
 // };
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
@@ -18,8 +21,9 @@ export const getListTrendingMovies = async () => {
   const response = axios.get(`/trending/movie/day?api_key=${API_KEY}`);
   return (await response).data.results;
 };
+
 // export const getListTrendingMovies = async () => {
-//   const response = axios.get(`/trending/movie/day?api_key=${key}`);
+//   const response = axios.get(`/trending/movie/day`);
 //   return (await response).data.results;
 // };
 //  ------------------  2  ---------------------------
@@ -32,9 +36,10 @@ export const searchMovieKeyword = async query => {
   );
   return (await response).data.results;
 };
+
 // export const searchMovieKeyword = async query => {
 //   const response = axios.get(
-//     `/search/movie?api_key=${key}&language=en-US&page=1&query=${query}&include_adult=false`
+//     `/search/movie?query=${query}`
 //   );
 //   return (await response).data.results;
 // };
@@ -49,8 +54,11 @@ export const getFullDetailsMovie = async movieId => {
   );
   return (await response).data;
 };
+
 // export const getFullDetailsMovie = async movieId => {
-//   const response = axios.get(`/movie/${movieId}?api_key=${key}&language=en-US`);
+//   const response = axios.get(
+//     `/movie/${movieId}`
+//   );
 //   return (await response).data;
 // };
 //  ------------------  4  ---------------------------
@@ -60,10 +68,16 @@ export const getFullDetailsMovie = async movieId => {
 // Query String: api_key - required
 export const getCastDetails = async movieId => {
   const response = axios.get(
-    `/movie/${movieId}/credits?api_key=key}&language=en-US`
+    `/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
   return (await response).data.cast;
 };
+// export const getCastDetails = async movieId => {
+//   const response = axios.get(
+//     `/movie/${movieId}/credits`
+//   );
+//   return (await response).data.cast;
+// };
 //  ------------------  5  ---------------------------
 
 //  - /movies/get-movie-reviews [запрос обзоров] [для страницы кинофильма].
@@ -75,9 +89,10 @@ export const getReviews = async movieId => {
   );
   return (await response).data.results;
 };
+
 // export const getReviews = async movieId => {
 //   const response = axios.get(
-//     `/movie/${movieId}/reviews?api_key=${key}&language=en-US&page=1`
+//     `/movie/${movieId}/reviews`
 //   );
 //   return (await response).data.results;
 // };

@@ -32,7 +32,10 @@ const MovieDetails = () => {
           <Box>
             {/* //------------ moviesInfo ----------------------- */}
             <div>
-              <Poster src={movie.poster_path ? poster : ''} alt={movie.tagline} />
+              <Poster
+                src={movie.poster_path ? poster : ''}
+                alt={movie.tagline}
+              />
             </div>
             <div>
               <h2>
@@ -63,7 +66,7 @@ const MovieDetails = () => {
               </NavLink>
             </li>
           </ul>
-          <hr />
+          {/* <hr /> */}
           <Outlet />
         </>
       )}
