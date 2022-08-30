@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-// const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '74dab5764eb399e955b3b18efd4e4a86';
-// Дефолтні налаштування для запиту axios
-// axios.defaults.baseURL = BASE_URL;
-// axios.defaults.params = {
-//   key: API_KEY,
-//   language: 'en-US',
-//   page: 1,
-//   include_adult: false,
-// };
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 //  ------------------  1  ---------------------------
@@ -21,13 +12,7 @@ export const getListTrendingMovies = async () => {
   const response = axios.get(`/trending/movie/day?api_key=${API_KEY}`);
   return (await response).data.results;
 };
-
-// export const getListTrendingMovies = async () => {
-//   const response = axios.get(`/trending/movie/day`);
-//   return (await response).data.results;
-// };
 //  ------------------  2  ---------------------------
-
 //  - /search/search-movies [поиск кинофильма по ключевому слову] [на странице фильмов].
 // Query String: api_key, query - required
 export const searchMovieKeyword = async query => {
@@ -36,13 +21,6 @@ export const searchMovieKeyword = async query => {
   );
   return (await response).data.results;
 };
-
-// export const searchMovieKeyword = async query => {
-//   const response = axios.get(
-//     `/search/movie?query=${query}`
-//   );
-//   return (await response).data.results;
-// };
 //  ------------------  3  ---------------------------
 // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 //  - /movies/get-movie-details [запрос полной информации о фильме] [для страницы кинофильма].
@@ -54,15 +32,7 @@ export const getFullDetailsMovie = async movieId => {
   );
   return (await response).data;
 };
-
-// export const getFullDetailsMovie = async movieId => {
-//   const response = axios.get(
-//     `/movie/${movieId}`
-//   );
-//   return (await response).data;
-// };
 //  ------------------  4  ---------------------------
-
 //  - /movies/get-movie-credits [запрос информации о актёрском составе] [для страницы кинофильма].
 // Path Parameters: movie_id - required
 // Query String: api_key - required
@@ -72,14 +42,7 @@ export const getCastDetails = async movieId => {
   );
   return (await response).data.cast;
 };
-// export const getCastDetails = async movieId => {
-//   const response = axios.get(
-//     `/movie/${movieId}/credits`
-//   );
-//   return (await response).data.cast;
-// };
 //  ------------------  5  ---------------------------
-
 //  - /movies/get-movie-reviews [запрос обзоров] [для страницы кинофильма].
 // Path Parameters: movie_id - required
 // Query String: api_key - required
@@ -90,9 +53,47 @@ export const getReviews = async movieId => {
   return (await response).data.results;
 };
 
+//----------------------------------------
+// Дефолтні налаштування для запиту axios
+// axios.defaults.params = {
+//   key: API_KEY,
+//   language: 'en-US',
+//   page: 1,
+//   include_adult: false,
+// };
+//  ------------------  1  ---------------------------
+
+// export const getListTrendingMovies = async () => {
+//   const response = axios.get(`/trending/movie/day`);
+//   return (await response).data.results;
+// };
+//  ------------------  2  ---------------------------
+
+// export const searchMovieKeyword = async query => {
+//   const response = axios.get(`/search/movie?query=${query}`);
+//   return (await response).data.results;
+// };
+//  ------------------  3  ---------------------------
+// export const getFullDetailsMovie = async movieId => {
+//   const response = axios.get(
+//     `/movie/${movieId}`
+//   );
+//   return (await response).data;
+// };
+//  ------------------  4  ---------------------------
+// export const getCastDetails = async movieId => {
+//   const response = axios.get(
+//     `/movie/${movieId}/credits`
+//   );
+//   return (await response).data.cast;
+// };
+//  ------------------  5  ---------------------------
+
 // export const getReviews = async movieId => {
 //   const response = axios.get(
 //     `/movie/${movieId}/reviews`
 //   );
 //   return (await response).data.results;
 // };
+
+//  ------------------  1  ---------------------------

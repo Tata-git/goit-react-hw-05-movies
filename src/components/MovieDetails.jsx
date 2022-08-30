@@ -1,7 +1,7 @@
 // import { Suspense } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
-import { Box, Button, Poster } from 'styled/MovieDetails.styled';
+import { AdditIfoList, Box, Button, Poster } from 'styled/MovieDetails.styled';
 
 const MovieDetails = () => {
   const movie = useFetchMovie();
@@ -11,7 +11,7 @@ const MovieDetails = () => {
   const location = useLocation();
 
   const IMAGE_URL = 'https://image.tmdb.org/t/p/';
-  const poster = `${IMAGE_URL}w300${movie?.poster_path}`;
+  const poster = `${IMAGE_URL}w200${movie?.poster_path}`;
   const release = new Date(movie?.release_date).getFullYear();
 
   const handleClick = () => {
@@ -20,7 +20,6 @@ const MovieDetails = () => {
 
   return (
     <>
-      {/* <Suspense fallback={<div>Loading...</div>}></Suspense> */}
       {!movie && <h2>Loading...</h2>}
 
       {movie && (
@@ -42,9 +41,9 @@ const MovieDetails = () => {
                 {movie.title} {release ? release : ''}
               </h2>
               <p>User Score: {movie.vote_average} %</p>
-              <p>Overview</p>
+              <h3>Overview</h3>
               <p>{movie.overview}</p>
-              <p>Genres</p>
+              <h3>Genres</h3>
               <p>
                 {movie.genres.map(({ id, name }) => {
                   return <span key={id}>{name} </span>;
@@ -52,21 +51,22 @@ const MovieDetails = () => {
               </p>
             </div>
           </Box>
+          <hr />
           {/* //---------- Additional information ------------ */}
-          <h1>Additional information</h1>
+          <h2>Additional information</h2>
           <ul>
-            <li>
+            <AdditIfoList>
               <NavLink to="cast" state={{ from: location }}>
                 Cast
               </NavLink>
-            </li>
-            <li>
+            </AdditIfoList>
+            <AdditIfoList>
               <NavLink to="reviews" state={{ from: location }}>
                 Reviews
               </NavLink>
-            </li>
+            </AdditIfoList>
           </ul>
-          {/* <hr /> */}
+          <hr />
           <Outlet />
         </>
       )}

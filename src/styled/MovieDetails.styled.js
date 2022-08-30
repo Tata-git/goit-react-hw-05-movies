@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const Button = styled.button`
   font-weight: 600;
   font-size: 18px;
@@ -12,4 +13,10 @@ export const Box = styled.div`
 
 export const Poster = styled.img`
   margin-right: 30px;
+`;
+export const AdditIfoList = styled.li`
+  margin-bottom: 10px;
+  font-weight: 600;
+
+  font-size: 18px;
 `;
