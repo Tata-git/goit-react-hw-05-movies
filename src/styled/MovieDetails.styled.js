@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Button = styled.button`
   font-weight: 600;
@@ -19,4 +20,10 @@ export const AdditIfoList = styled.li`
   font-weight: 600;
 
   font-size: 18px;
+`;
+
+export const Link = styled(NavLink)`
+  &.active {
+    color: #2196f3;
+  }
 `;

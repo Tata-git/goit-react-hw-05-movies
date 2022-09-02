@@ -1,11 +1,11 @@
 import { useFetchCast } from 'hooks/useFetchCast';
-import noImage from '../image/no-image-min.png'
+import noImage from '../image/no-image-min.png';
 const Cast = () => {
   const castDetails = useFetchCast();
 
   return (
     <>
-      {castDetails && (
+      {castDetails.length > 0 ? (
         <ul>
           {castDetails.map(({ id, name, character, profile_path }) => {
             return (
@@ -14,7 +14,7 @@ const Cast = () => {
                   src={
                     profile_path
                       ? `https://tmdb.org/t/p/w200${profile_path}`
-                      : `${noImage}`
+                      : noImage
                   }
                   alt={name}
                 />
@@ -24,6 +24,8 @@ const Cast = () => {
             );
           })}
         </ul>
+      ) : (
+        <p>We don't have any cast for this movie</p>
       )}
     </>
   );

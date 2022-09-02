@@ -1,21 +1,30 @@
-// import { Suspense } from 'react';
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
-import { AdditIfoList, Box, Button, Poster } from 'styled/MovieDetails.styled';
-
+import {
+  AdditIfoList,
+  Box,
+  Button,
+  Poster,
+  Link,
+} from 'styled/MovieDetails.styled';
+import noImage from '../image/no-image-min.png';
 const MovieDetails = () => {
   const movie = useFetchMovie();
-  console.log('movie', movie);
+  // console.log('movie', movie);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const backLink = location.state?.from ?? '/movies';
+
+  console.log('movieDetails - location ', location.state);
 
   const IMAGE_URL = 'https://image.tmdb.org/t/p/';
   const poster = `${IMAGE_URL}w200${movie?.poster_path}`;
   const release = new Date(movie?.release_date).getFullYear();
 
   const handleClick = () => {
-    return navigate(location?.state?.from ?? '/');
+    navigate(backLink);
   };
 
   return (
@@ -32,7 +41,7 @@ const MovieDetails = () => {
             {/* //------------ moviesInfo ----------------------- */}
             <div>
               <Poster
-                src={movie.poster_path ? poster : ''}
+                src={movie.poster_path ? poster : noImage}
                 alt={movie.tagline}
               />
             </div>
@@ -40,7 +49,7 @@ const MovieDetails = () => {
               <h2>
                 {movie.title} {release ? release : ''}
               </h2>
-              <p>User Score: {movie.vote_average} %</p>
+              <p>User Score: {Math.round(movie.vote_average)} %</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
               <h3>Genres</h3>
@@ -53,17 +62,18 @@ const MovieDetails = () => {
           </Box>
           <hr />
           {/* //---------- Additional information ------------ */}
+          {/*Link -  NavLink */}
           <h2>Additional information</h2>
           <ul>
             <AdditIfoList>
-              <NavLink to="cast" state={{ from: location }}>
+              <Link to="cast" state={{ from: backLink }}>
                 Cast
-              </NavLink>
+              </Link>
             </AdditIfoList>
             <AdditIfoList>
-              <NavLink to="reviews" state={{ from: location }}>
+              <Link to="reviews" state={{ from: backLink }}>
                 Reviews
-              </NavLink>
+              </Link>
             </AdditIfoList>
           </ul>
           <hr />

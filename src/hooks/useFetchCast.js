@@ -9,12 +9,12 @@ export const useFetchCast = () => {
     useEffect(() => {
       
     getCastDetails(movieId).then(data => {
-      console.log('data', data);
+      // console.log('data', data);
       setCastDetails(data);
     });
     }, [movieId]);
     
-  console.log('cast', castDetails);
+  // console.log('cast', castDetails);
 
   return castDetails;
 };

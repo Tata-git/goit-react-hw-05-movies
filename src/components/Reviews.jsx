@@ -5,7 +5,7 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews ? (
+      {reviews.length > 0 ? (
         <ul>
           {reviews.map(({ id, author, content }) => {
             return (

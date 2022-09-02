@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     // getListTrendingMovies().then(console.log);
-    
+
     getListTrendingMovies().then(setMovies);
   }, []);
 
@@ -16,7 +16,7 @@ const Home = () => {
     <>
       <PageHeading>Trending today</PageHeading>
 
-      {movies && <MoviesList moviesInfo={movies} />}
+      {movies && <MoviesList moviesInfo={movies}  />}
     </>
   );
 };
